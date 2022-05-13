@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>login</title>
+</head>
+<body>
+    <header>
+        
+    <div class="cab">
+        <ul>
+        <li><a href="#sobre">Sobre o jogo</a></li>
+        <li><a href="#cad">Cadastro</a></li>
+        <li><a href="#contato">Contato</a></li>
+        </ul>
+    </div>
+
+    </header>
+    <main>
+    <div class="container">
+
+        <div class="box">
+            <form method="post" action="usuario.php">
+                <fieldset>
+                <br><br><br><label>Usuário</label>
+                <input type="text" maxlength="20" size="20" name="txtnome" placeholder="Nome" id="usuario" required>
+                <br><br><br><label>Senha</label>
+                <input type="password" maxlength="16"  size="16"  name="txtsenha" placeholder="*********" id="senha" required>
+                <input type="submit" value="Entrar" id="submit" name="acao"><br><br>
+                <label id="cont">Não tem uma conta?</label><a href="#registrar" id="registro"><br>Registre-se</a>
+                <p><a href="#semregistro" id="semregistro">Jogar sem registro</a></p> <!-- Possibilidade de jogar sem login, mas sem score -->
+        </div>
+        </fieldset>
+        </form>
+           
+        <div class="sobre">   
+            <h2 id="sobre">Sobre o Jogo</h2>
+            <form method="get" action="sob.php">
+            <h2>Instruções:</h2>
+
+        <?php //Arquivo de instruções
+            $ins = fopen("Instrucoes.txt", "r");
+            $leia = fread($ins, filesize("Instrucoes.txt"));
+            echo $leia;
+            fclose($ins);
+        ?>
+        
+        <?php //Criação do arquivo de mensagens
+            $msgm = fopen("Mensagem.txt", "w");
+            $leiaM = fwrite($msgm, filesize("Mensagem.txt"));
+        ?> 
+        
+        <h2>Nós mande uma mensagem!!!</h2>
+            <fieldset>
+            <label>Enviar:</label>
+            <input type="text" name="msg" placeholder="Mensagem." size="40" maxlength="400" id="msgm"><br>
+
+        </fieldset>
+        </form>
+
+        <?php //Teste se o texto foi enviado com sucesso
+            if ($leiaM != NULL) { 
+                echo $leiaM;
+                echo "Mensagem enviada com sucesso";
+            }else{
+                echo "Erro em mandar a mensagem";
+            }
+            fclose($msgm);
+        ?> 
+
+        </div>
+        
+    </div>
+    
+    </main>
+    <hr>
+    <footer>
+
+        <div class="contato">
+            <h2 id="contato">Contato</h2>
+            <p>Informações de contato</p>
+        </div>
+            
+    </footer>
+</body>
+</html>
