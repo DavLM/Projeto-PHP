@@ -33,7 +33,7 @@ require_once 'sql.php';
     <?php 
     session_start();
     if(!isset($_SESSION['id_use'])){
-        header("location: ../index.php");
+        header("location:index.php");
         exit;
     }
 
@@ -43,15 +43,15 @@ require_once 'sql.php';
         
         switch($op){
             case 'facil':
-                header("location: ../niveis/facil.php");
+                header("location:facil.php");
             break;
 
             case 'medio':
-                header("location: ../niveis/medio.php");
+                header("location:medio.php");
             break;
 
             case 'dificil':
-                header("location: ../niveis/dificil.php");
+                header("location:dificil.php");
             break;
         }
     }
